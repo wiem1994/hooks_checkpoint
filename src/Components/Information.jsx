@@ -7,16 +7,16 @@ export default class Information extends Component {
         fullName: "Wiem Ben Ameur",
         bio: "This is me",
         profession: "xxxxx",
-        count: 0,
+        date: new Date(),
     };
     componentDidMount() {
-        setInterval(() => {
-            this.setState({ count: this.state.count + 1 });
+        this.interval = setInterval(() => {
+            this.setState({ date: new Date() });
         }, 1000);
     }
 
     componentWillUnmount() {
-        console.log("last step is done");
+        clearInterval(this.interval);
     }
     render() {
         return (
@@ -26,7 +26,7 @@ export default class Information extends Component {
                 <h2>Profession : {this.state.profession}</h2>
                 <img src={myImage} alt="Oups" />
                 <br />
-                <h2>{this.state.count}</h2>
+                <h2>{this.state.date.toLocaleTimeString()}</h2>
             </div>
         );
     }
